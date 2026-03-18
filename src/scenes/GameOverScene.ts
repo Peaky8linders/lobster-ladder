@@ -143,7 +143,7 @@ export class GameOverScene extends Phaser.Scene {
     this.createButton(GAME_WIDTH / 2, 565, 'COPY RESULTS', COLORS.midPanel, () => {
       playClick();
       const text = this.generateShareText(summary, won);
-      navigator.clipboard?.writeText(text);
+      navigator.clipboard?.writeText(text).catch(() => {});
     });
   }
 

@@ -24,4 +24,6 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
 const game = new Phaser.Game(gameConfig);
 
-(window as unknown as Record<string, unknown>).__LOBSTER_GAME__ = game;
+if (import.meta.env.DEV) {
+  (window as unknown as Record<string, unknown>).__LOBSTER_GAME__ = game;
+}
