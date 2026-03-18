@@ -208,7 +208,16 @@ export class BossScene extends Phaser.Scene {
     const startY = 390;
     const colW = 480, rowH = 70;
 
+    // Bigger Brain upgrade: eliminate wrong options
+    const eliminateCount = gameState.getUpgradeStacks('bigger_brain');
+    const wrongIndices: number[] = [];
+    for (let j = 0; j < question.options.length; j++) {
+      if (j !== question.correctIndex) wrongIndices.push(j);
+    }
+    const eliminated = new Set(wrongIndices.slice(0, eliminateCount));
+
     question.options.forEach((opt, i) => {
+      if (eliminated.has(i)) return; // skip eliminated options
       const col = i % 2;
       const row = Math.floor(i / 2);
       const ox = GAME_WIDTH / 2 + (col === 0 ? -colW / 2 - 15 : 15);

@@ -87,7 +87,7 @@ export class MoltScene extends Phaser.Scene {
       }).setOrigin(0.5);
       gameState.addScore(500);
       gameState.completeMolt();
-      this.time.delayedCall(2000, () => this.scene.start('LadderScene'));
+      this.time.delayedCall(2000, () => this.scene.start('LadderScene', { fromChallenge: true, passed: true }));
       return;
     }
 
@@ -178,7 +178,7 @@ export class MoltScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.time.delayedCall(1500, () => {
-          this.scene.start('LadderScene');
+          this.scene.start('LadderScene', { fromChallenge: true, passed: true });
         });
       });
     });
