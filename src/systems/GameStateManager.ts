@@ -89,8 +89,8 @@ class GameStateManager {
   applyUpgrade(id: UpgradeId): void {
     this.state.upgrades[id]++;
     if (id === 'thicker_shell') {
-      this.state.maxHp++;
-      this.state.hp++;
+      this.state.maxHp = Math.min(BALANCE.maxHp, this.state.maxHp + 1);
+      this.state.hp = Math.min(this.state.maxHp, this.state.hp + 1);
     }
   }
 

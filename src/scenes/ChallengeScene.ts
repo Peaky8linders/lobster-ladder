@@ -358,6 +358,10 @@ export class ChallengeScene extends Phaser.Scene {
   private endRapidFire() {
     this.rapidFireActive = false;
     if (this.timerEvent) this.timerEvent.remove();
+    if (this.rapidFireContainer) {
+      this.rapidFireContainer.destroy(true);
+      this.rapidFireContainer = undefined;
+    }
 
     const resultText = this.rapidFireScore >= 3 ? 'Great job!' : 'Not bad!';
     this.add.text(GAME_WIDTH / 2, 480, `${resultText} ${this.rapidFireScore} correct!`, {

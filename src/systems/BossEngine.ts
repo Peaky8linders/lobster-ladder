@@ -137,7 +137,7 @@ class BossEngine {
 
     if (bossDefeated) {
       this.state.defeated = true;
-      gameState.defeatBoss(this.state.boss.id);
+      gameState.defeatBoss(this.state.boss.crustaceanName);
     }
 
     return {
