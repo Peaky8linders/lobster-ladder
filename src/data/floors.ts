@@ -241,6 +241,6 @@ export const FLOORS: Floor[] = [
   },
 ];
 
-export function getFloor(num: number): Floor {
-  return FLOORS.find(f => f.number === num)!;
+export function getFloor(num: number): Floor | undefined {
+  return FLOORS.find(f => f.number === num);
 }

@@ -3,6 +3,7 @@ import { GAME_WIDTH, GAME_HEIGHT, COLORS, FONTS, TIER_NAMES } from '../config';
 import { gameState } from '../systems/GameStateManager';
 import { playClick, playMolt } from '../utils/audio';
 import { UPGRADES } from '../data/upgrades';
+import { shuffle } from '../utils/helpers';
 import { UpgradeId } from '../types';
 
 export class MoltScene extends Phaser.Scene {
@@ -75,8 +76,8 @@ export class MoltScene extends Phaser.Scene {
     this.add.text(GAME_WIDTH / 2, 320, 'Choose your evolution:', FONTS.heading).setOrigin(0.5);
 
     // Filter available upgrades (not at max stacks)
-    const available = UPGRADES.filter(u => state.upgrades[u.id] < u.maxStacks);
-    const toShow = available.length >= 3 ? available.slice(0, 3) : available;
+    const available = shuffle(UPGRADES.filter(u => state.upgrades[u.id] < u.maxStacks));
+    const toShow = available.slice(0, 3);
 
     if (toShow.length === 0) {
       // All maxed - give bonus score

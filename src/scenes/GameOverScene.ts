@@ -3,6 +3,7 @@ import { GAME_WIDTH, GAME_HEIGHT, COLORS, FONTS, TIER_NAMES } from '../config';
 import { gameState } from '../systems/GameStateManager';
 import { playClick, playGameOver, playMolt } from '../utils/audio';
 import { formatTime } from '../utils/helpers';
+import { questionEngine } from '../systems/QuestionEngine';
 import { RunSummary } from '../types';
 
 export class GameOverScene extends Phaser.Scene {
@@ -129,6 +130,7 @@ export class GameOverScene extends Phaser.Scene {
     this.createButton(GAME_WIDTH / 2 - 130, 610, 'CLIMB AGAIN', COLORS.lobsterRed, () => {
       playClick();
       gameState.newRun();
+      questionEngine.reset();
       this.scene.start('LadderScene');
     });
 
