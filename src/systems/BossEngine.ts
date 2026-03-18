@@ -90,7 +90,6 @@ class BossEngine {
         case 'boom_bust':
           damageDealt *= 2;
           abilityText = `BOOM! 2x damage dealt!`;
-          gameState.addScore(BALANCE.pointsPerCorrect);
           break;
         case 'compound':
           this.state.difficultyModifier = Math.max(-2, this.state.difficultyModifier - 1);

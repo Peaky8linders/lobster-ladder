@@ -282,7 +282,8 @@ export class ChallengeScene extends Phaser.Scene {
 
     // Clear previous question elements
     if (this.rapidFireContainer) {
-      this.rapidFireContainer.destroy();
+      this.rapidFireContainer.destroy(true);
+      this.rapidFireContainer = undefined;
     }
 
     const [minD, maxD] = difficultyForTier(this.floor.tier);
@@ -343,11 +344,7 @@ export class ChallengeScene extends Phaser.Scene {
           playWrong();
           gameState.recordWrongAnswer();
         }
-        // Destroy and show next
-        buttons.forEach(b => b.destroy());
-        optBg.destroy();
-        optText.destroy();
-        zone.destroy();
+        // Container destroy handles all children
         this.nextRapidFireQuestion();
       });
 

@@ -9,6 +9,7 @@ export class BossScene extends Phaser.Scene {
   private boss!: Boss;
   private floor!: Floor;
   private answered = false;
+  private battleStarted = false;
   private bossHpBar!: Phaser.GameObjects.Graphics;
   private playerHpDisplay!: Phaser.GameObjects.Text;
   private questionContainer: Phaser.GameObjects.GameObject[] = [];
@@ -19,6 +20,8 @@ export class BossScene extends Phaser.Scene {
   }
 
   create(data: { boss: Boss; floor: Floor }) {
+    this.answered = false;
+    this.battleStarted = false;
     this.boss = data.boss;
     this.floor = data.floor;
 
@@ -78,6 +81,8 @@ export class BossScene extends Phaser.Scene {
     // "FIGHT!" button after intro
     this.time.delayedCall(1500, () => {
       this.createButton(GAME_WIDTH / 2, 440, 'FIGHT!', () => {
+        if (this.battleStarted) return;
+        this.battleStarted = true;
         playClick();
         // Clear intro elements
         nameText.destroy();
